@@ -1,9 +1,8 @@
-
 var
   expect = require('chai').expect,
-  server = require('../src/server');
+  http   = require('../src/http-wrapper');
 
-describe('Server', function() {
+describe('HTTPWrapper', function() {
 
   it('creates a server', function() {
     var httpSpy = {
@@ -12,12 +11,12 @@ describe('Server', function() {
         this.serverCreated = true;
       }
     };
-    var myServer = server.setup(httpSpy);
+    var server = http.setup(httpSpy);
     expect(httpSpy.serverCreated).to.be.true;
   });
 
   it('sets up a request listener', function() {
-    var myServer = {
+    var serverSpy = {
       listenerIsSetup: false,
       listenerEvent: '',
       listenerCallback: undefined,
@@ -27,14 +26,14 @@ describe('Server', function() {
         this.listenerCallback = callback;
       }
     }
-    server.addRequestListener(myServer);
-    expect(myServer.listenerIsSetup).to.be.true;
-    expect(myServer.listenerEvent).to.equal('request');
-    expect(myServer.listenerCallback).to.not.be.undefined;
+    http.addRequestListener(serverSpy);
+    expect(serverSpy.listenerIsSetup).to.be.true;
+    expect(serverSpy.listenerEvent).to.equal('request');
+    expect(serverSpy.listenerCallback).to.not.be.undefined;
   });
 
   it('starts the server', function() {
-    var myServer = {
+    var serverSpy = {
       serverWasStarted: false,
       serverPort: undefined,
       listen: function(port) {
@@ -42,9 +41,9 @@ describe('Server', function() {
         this.serverPort = port;
       }
     };
-    server.start(myServer);
-    expect(myServer.serverWasStarted).to.be.true;
-    expect(myServer.serverPort).to.equal(4000);
+    http.start(serverSpy);
+    expect(serverSpy.serverWasStarted).to.be.true;
+    expect(serverSpy.serverPort).to.equal(4000);
   });
 
 });
