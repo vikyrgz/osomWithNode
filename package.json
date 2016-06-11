@@ -1,0 +1,27 @@
+{
+  "name": "osom",
+  "version": "1.0.0",
+  "description": "How to kick ass",
+  "main": "main.js",
+  "dependencies": {},
+  "devDependencies": {
+    "chai": "^3.5.0",
+    "mocha": "^2.5.3"
+  },
+  "scripts": {
+    "test": "mocha"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/vikyrgz/osomWithNode.git"
+  },
+  "keywords": [
+    "osom"
+  ],
+  "author": "vikyrgz",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/vikyrgz/osomWithNode/issues"
+  },
+  "homepage": "https://github.com/vikyrgz/osomWithNode#readme"
+}
