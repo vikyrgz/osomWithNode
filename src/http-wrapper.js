@@ -1,26 +1,24 @@
-module.exports = (function() {
+function HttpWrapper(httpClient) {
 
+  var http = httpClient;
   var PORT = 4000;
 
   var requestHandler = function(request, response) {
   }
 
-  var setup = function(http) {
-    http.createServer();
+  this.setup = function() {
+    this.server = http.createServer();
   };
 
-  var addRequestListener = function(server) {
-    server.on('request', requestHandler);
+  this.addRequestListener = function() {
+    this.server.on('request', requestHandler);
   };
 
-  var start = function(server) {
+  this.start = function(server) {
     server.listen(PORT);
   }
 
-  return {
-    setup: setup,
-    addRequestListener: addRequestListener,
-    start: start
-  };
+};
 
-})();
+module.exports = HttpWrapper;
+
